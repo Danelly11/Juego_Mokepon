@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>MOKEPON!</title>
+        
     </head>
     <body>
         <h1>MOKEPON! </h1>
@@ -19,7 +20,7 @@
             <label for="ratigueya">Ratigueya</label>
             <input type="radio" name="mascota" id="ratigueya"/>
 
-            <button>seleccionar</button>
+            <button id="boton-mascota">seleccionar</button>
         </section>
 
         <section id="seleccionar-ataque">
@@ -29,9 +30,9 @@
             <p>La mascota del enemigo tiene <span>3</span> vidas</p>
 
             <P>
-                <button>Fuego</button>
-                <button>Agua</button>
-                <button>Tierra</button>
+                <button id="boton-fuego">Fuego</button>
+                <button id="boton-agua">Agua</button>
+                <button id="boton-tierra">Tierra</button>
     
             </P>
         </section>
@@ -40,9 +41,10 @@
         </section>
         
         <section id="reiniciar">
-            <button>Reiniciar</button>
+            <button id="boton-reiniciar">Reiniciar</button>
         </section> 
-
+        
+        <script src="./js/Mokepon.js"></script>
     </body>
 
 </html>
