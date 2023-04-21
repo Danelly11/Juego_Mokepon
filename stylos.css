@@ -1,10 +1,9 @@
-.titulo {
-    color:hotpink;
-    width: 200px;
-    height: 50px;
-    background-color: teal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300&display=swap');
 
+body {
+    font-family: 'Shantell Sans', cursive;
+    background-color: #FFE5CA
+}
 #seleccionar-mascota {
     display: flex;
     flex-direction: column;
@@ -12,14 +11,38 @@
     align-items: center;
 }
 
+.titulo {
+    color: #E74646;
+    width: 200px;
+    height: 50px;
+    
+}
+
+.subtitulo {
+    color: #E74646;
+    font-size: 20px;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 10px;
+}
+
 .tarjeta-de-mokepon {
-    width: 100px;
+    width: 180px;
     height: 100px;
-    background: aquamarine;
+    background: #FFF3E2;
     padding: 10px;
     box-sizing: border-box;
-    margin: 10px;
-    border: 1px solid hotpink;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #E74646;
+}
+
+.tarjeta-de-mokepon img {
+    width: 80px;
 }
 
 input {
