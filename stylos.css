@@ -53,7 +53,7 @@ body {
     background: transparent; 
     border: 2px solid #FFF3E2;
     color: #E74646;
-    font-family: 'Shantell Sans', cursive;
+    font-family: 'Sigmar', cursive;
     margin: 30px 0px 0px 0px;
 }
 
@@ -70,8 +70,31 @@ input {
     border-radius: 20px;
     background: transparent; 
     border: 2px solid #FFF3E2;
-    font-family: 'Shantell Sans', cursive;
+    font-family: 'Sigmar', cursive;
     width: 100px;
-    height: 30px;
+    height: 40px;
     color: #E74646
+}
+
+#mensajes {
+    width: 300px;
+    background: transparent; 
+    padding: 20px;
+    margin-top: 20px;
+    border: 2px solid #FFF3E2;
+    border-radius: 20px;
+    color: #E74646;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#boton-reiniciar {
+    width: 180px;
+    height: 40px;
+    border-radius: 100px;
+    background: transparent; 
+    border: 2px solid #FFF3E2;
+    color: #E74646;
+    font-family: 'Sigmar', cursive;
 }
