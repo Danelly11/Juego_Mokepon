@@ -29,7 +29,7 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = "none"
 
     let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
-    sectionSeleccionarAtaque.style.display = "block"
+    sectionSeleccionarAtaque.style.display = "flex"
     
     let inputHipodogue = document.getElementById("hipodogue")
     let inputCapipepo = document.getElementById("capipepo")
@@ -125,21 +125,25 @@ function revisarVidas (){
 }
 
 function crearMensaje (resultado) {
-    let sectionMensajes = document.getElementById("mensajes")
-    
-    let parrafo = document.createElement("p")
-    parrafo.innerHTML = "Tu mascota ataco con " +  ataqueJugador  + " , la mascota del enemigo ataco con " + ataqueEnemigo + " - " + resultado
+    let sectionMensajes = document.getElementById("resultado")
+    let ataquesDelJugador = document.getElementById("ataques-del-jugador")
+    let ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
 
-    sectionMensajes.appendChild(parrafo)
+    let nuevoAtaqueDelJugador = document.createElement("p")
+    let nuevoAtaqueDelEnemigo = document.createElement("p")
+
+    sectionMensajes.innerHTML = resultado
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo
+    
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
+    ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 }
 
 function crearMensajeFinal (resultadoFinal) {
-    let sectionMensajes = document.getElementById("mensajes")
+    let sectionMensajes = document.getElementById("resultado")
     
-    let parrafo = document.createElement("p")
-    parrafo.innerHTML = resultadoFinal
-
-    sectionMensajes.appendChild(parrafo)
+    sectionMensajes.innerHTML = resultadoFinal
 
     let botonFuego = document.getElementById ("boton-fuego")
     botonFuego.disabled = true
@@ -149,7 +153,7 @@ function crearMensajeFinal (resultadoFinal) {
     botonTierra.disabled = true
 
     let sectionReiniciar = document.getElementById("reiniciar")
-    sectionReiniciar.style.display = "block"
+    sectionReiniciar.style.display = "flex"
 }
 
 function reiniciarJuego () {
