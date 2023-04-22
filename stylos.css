@@ -60,3 +60,18 @@ body {
 input {
     display: none;
 }
+
+#seleccionar-ataque {
+   flex-direction: column;
+   align-items: center;
+}
+
+.boton-de-ataque {
+    border-radius: 20px;
+    background: transparent; 
+    border: 2px solid #FFF3E2;
+    font-family: 'Shantell Sans', cursive;
+    width: 100px;
+    height: 30px;
+    color: #E74646
+}
