@@ -1,40 +1,88 @@
+const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+const sectionReiniciar = document.getElementById("reiniciar")
+const botonMascotaJugador = document.getElementById("boton-mascota")
+const botonFuego = document.getElementById ("boton-fuego")
+const botonAgua = document.getElementById ("boton-agua")
+const botonTierra = document.getElementById ("boton-tierra")
+const botonReiniciar = document.getElementById("boton-reiniciar")
+
+const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
+const inputSquartle = document.getElementById("Squartle")
+const inputBulbasaur = document.getElementById("Bulbasaur")
+const inputCharmander = document.getElementById("Charmander")
+const spanMascotaJugador = document.getElementById("mascota-jugador")
+
+const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
+
+const spanVidasJugador = document.getElementById("vidas-jugador")
+const spanVidasEnemigo = document.getElementById("vidas-enemigo")
+
+const sectionMensajes = document.getElementById("resultado")
+const ataquesDelJugador = document.getElementById("ataques-del-jugador")
+const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
+
+
+let mokepones = []
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 
-function iniciarJuego() {
-    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+class Mokepon {
+    constructor (nombre, foto, vida) {
+        this.nombre = nombre
+        this.foto = foto
+        this.vida = vida
+        this.ataques = []
+    }
+}
+
+let Squartle = new Mokepon ("Squartle", "./Assets/Hipodogue.png", 5)
+let Bulbasaur = new Mokepon ("Bulbasaur", "./Assets/Capipepo.png", 5)
+let Charmander = new Mokepon ("Charmander", "./Assets/Ratigueya.png", 5)
+
+Squartle.ataques.push(
+    {nombre: "Agua", id: "boton-agua"},
+    {nombre: "Agua", id: "boton-agua"},
+    {nombre: "Agua", id: "boton-agua"},
+    {nombre: "Fuego", id: "boton-fuego"},
+    {nombre: "Tierra", id: "boton-tierra"},
+)
+
+Bulbasaur.ataques.push(
+    {nombre: "Tierra", id: "boton-tierra"},
+    {nombre: "Tierra", id: "boton-tierra"},
+    {nombre: "Tierra", id: "boton-tierra"},
+    {nombre: "Fuego", id: "boton-fuego"},
+    {nombre: "Agua", id: "boton-agua"},
+)
+
+Charmander.ataques.push(
+    {nombre: "Fuego", id: "boton-fuego"},
+    {nombre: "Fuego", id: "boton-fuego"},
+    {nombre: "Fuego", id: "boton-fuego"},
+    {nombre: "Agua", id: "boton-agua"},
+    {nombre: "Tierra", id: "boton-tierra"},
+)
+
+mokepones.push(Squartle,Bulbasaur,Charmander)
+
+function iniciarJuego() {    
     sectionSeleccionarAtaque.style.display = "none"
 
-    let sectionReiniciar = document.getElementById("reiniciar")
-    sectionReiniciar.style.display = "none"
-
-    let botonMascotaJugador = document.getElementById("boton-mascota")
+    sectionReiniciar.style.display = "none"    
     botonMascotaJugador.addEventListener("click",seleccionarMascotaJugador)
-
-    let botonFuego = document.getElementById ("boton-fuego")
-    botonFuego.addEventListener("click",ataqueFuego)
-    let botonAgua = document.getElementById ("boton-agua")
-    botonAgua.addEventListener("click",ataqueAgua)
-    let botonTierra = document.getElementById ("boton-tierra")
+    
+    botonFuego.addEventListener("click",ataqueFuego)    
+    botonAgua.addEventListener("click",ataqueAgua)    
     botonTierra.addEventListener("click",ataqueTierra)
-
-    let botonReiniciar = document.getElementById("boton-reiniciar")
+    
     botonReiniciar.addEventListener("click", reiniciarJuego)
 }
 
-function seleccionarMascotaJugador() {
-    let sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
-    sectionSeleccionarMascota.style.display = "none"
-
-    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
-    sectionSeleccionarAtaque.style.display = "flex"
-    
-    let inputSquartle = document.getElementById("Squartle")
-    let inputBulbasaur = document.getElementById("Bulbasaur")
-    let inputCharmander = document.getElementById("Charmander")
-    let spanMascotaJugador = document.getElementById("mascota-jugador")
+function seleccionarMascotaJugador() {    
+    sectionSeleccionarMascota.style.display = "none"    
+    sectionSeleccionarAtaque.style.display = "flex"    
     
     if (inputSquartle.checked) {
         spanMascotaJugador.innerHTML ="Squartle"
@@ -50,8 +98,7 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo () {
-    let mascotaAleatoria = aleatorio (1,3)
-    let spanMascotaEnemigo = document.getElementById("mascota-enemigo")
+    let mascotaAleatoria = aleatorio (1,3)    
 
     if (mascotaAleatoria == 1) {
         spanMascotaEnemigo.innerHTML = "Squartle"
@@ -89,10 +136,7 @@ let ataqueAleatorio = aleatorio(1,3)
     combate()
 }
 
-function combate () {
-    let spanVidasJugador = document.getElementById("vidas-jugador")
-    let spanVidasEnemigo = document.getElementById("vidas-enemigo")
-
+function combate () {   
     if(ataqueEnemigo == ataqueJugador){
         crearMensaje("EMPATE")
     } else if(ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA"){
@@ -125,10 +169,6 @@ function revisarVidas (){
 }
 
 function crearMensaje (resultado) {
-    let sectionMensajes = document.getElementById("resultado")
-    let ataquesDelJugador = document.getElementById("ataques-del-jugador")
-    let ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
-
     let nuevoAtaqueDelJugador = document.createElement("p")
     let nuevoAtaqueDelEnemigo = document.createElement("p")
 
@@ -140,19 +180,13 @@ function crearMensaje (resultado) {
     ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 }
 
-function crearMensajeFinal (resultadoFinal) {
-    let sectionMensajes = document.getElementById("resultado")
-    
+function crearMensajeFinal (resultadoFinal) {    
     sectionMensajes.innerHTML = resultadoFinal
-
-    let botonFuego = document.getElementById ("boton-fuego")
-    botonFuego.disabled = true
-    let botonAgua = document.getElementById ("boton-agua")
-    botonAgua.disabled = true
-    let botonTierra = document.getElementById ("boton-tierra")
+    
+    botonFuego.disabled = true    
+    botonAgua.disabled = true    
     botonTierra.disabled = true
-
-    let sectionReiniciar = document.getElementById("reiniciar")
+    
     sectionReiniciar.style.display = "flex"
 }
 
