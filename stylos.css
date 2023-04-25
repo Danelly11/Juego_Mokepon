@@ -125,13 +125,14 @@ input:checked + label {
 
 .ataques {
     display: grid;
-    grid-template-columns: 100px 100px;
+    grid-template-columns: 200px 200px;
     flex-direction: column;
     border-radius: 20px;
     border: 2px solid #E74646;
     width: 200px;
-    height: 300px;
+    height: 200px;
     margin-top: 20px;
+    padding-right: 200px;
 }
 
 #vidas-jugador, #vidas-enemigo {
@@ -148,8 +149,9 @@ input:checked + label {
 .ataques-jugador, .ataques-enemigo {
     display: flex;
     flex-direction: column;
+    padding-left: 10px;
     align-items: center;
-
+   
 }
 
 @media (max-width: 360px) {
