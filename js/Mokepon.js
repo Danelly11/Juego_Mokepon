@@ -103,12 +103,12 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = "none"    
     sectionSeleccionarAtaque.style.display = "flex"    
     
-    if (Mokepon.nombre) {
-        spanMascotaJugador.innerHTML ="Squartle"
-    } else if (Mokepon.nombre) {
-        spanMascotaJugador.innerHTML ="Bulbasaur"
-    } else if (Mokepon.nombre) {
-        spanMascotaJugador.innerHTML ="Charmander"
+    if (inputSquartle.checked) {
+        spanMascotaJugador.innerHTML = inputSquartle.id
+    } else if (inputBulbasaur.checked) {
+        spanMascotaJugador.innerHTML = inputBulbasaur.id
+    } else if (inputCharmander.checked) {
+        spanMascotaJugador.innerHTML = inputCharmander.id
     } else {
         alert("Selecciona una mascota")
     }
@@ -117,15 +117,9 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo () {
-    let mascotaAleatoria = aleatorio (1,3)    
+    let mascotaAleatoria = aleatorio (0, mokepones.length -1)    
 
-    if (mascotaAleatoria == 1) {
-        spanMascotaEnemigo.innerHTML = "Squartle"
-    } else if (mascotaAleatoria == 2) {
-        spanMascotaEnemigo.innerHTML = "Bulbasaur"
-    } else {
-        spanMascotaEnemigo.innerHTML = "Charmander"
-    }
+    spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre
 }
 
 function ataqueFuego () {
