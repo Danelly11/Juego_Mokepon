@@ -7,9 +7,7 @@ const botonTierra = document.getElementById ("boton-tierra")
 const botonReiniciar = document.getElementById("boton-reiniciar")
 
 const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
-const inputSquartle = document.getElementById("Squartle")
-const inputBulbasaur = document.getElementById("Bulbasaur")
-const inputCharmander = document.getElementById("Charmander")
+
 const spanMascotaJugador = document.getElementById("mascota-jugador")
 
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
@@ -20,11 +18,16 @@ const spanVidasEnemigo = document.getElementById("vidas-enemigo")
 const sectionMensajes = document.getElementById("resultado")
 const ataquesDelJugador = document.getElementById("ataques-del-jugador")
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
+const contenedorTarjetas = document.getElementById("contenedorTarjetas")
 
 
 let mokepones = []
 let ataqueJugador
 let ataqueEnemigo
+let opcionDeMokepones
+let inputSquartle 
+let inputBulbasaur 
+let inputCharmander 
 let vidasJugador = 3
 let vidasEnemigo = 3
 
@@ -70,6 +73,22 @@ mokepones.push(Squartle,Bulbasaur,Charmander)
 function iniciarJuego() {    
     sectionSeleccionarAtaque.style.display = "none"
 
+    mokepones.forEach((Mokepon) => {
+        opcionDeMokepones = ` 
+        <input type="radio" name="mascota" id=${Mokepon.nombre} />
+        <label class="tarjeta-de-mokepon" for=${Mokepon.nombre} >
+            <p>${Mokepon.nombre} </p>
+            <img src=${Mokepon.foto} alt=${Mokepon.nombre} >
+        </label>
+        `
+    contenedorTarjetas.innerHTML += opcionDeMokepones
+
+    inputSquartle = document.getElementById("Squartle")
+    inputBulbasaur = document.getElementById("Bulbasaur")
+    inputCharmander = document.getElementById("Charmander")
+    
+    })
+
     sectionReiniciar.style.display = "none"    
     botonMascotaJugador.addEventListener("click",seleccionarMascotaJugador)
     
@@ -84,11 +103,11 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = "none"    
     sectionSeleccionarAtaque.style.display = "flex"    
     
-    if (inputSquartle.checked) {
+    if (Mokepon.nombre) {
         spanMascotaJugador.innerHTML ="Squartle"
-    } else if (inputBulbasaur.checked) {
+    } else if (Mokepon.nombre) {
         spanMascotaJugador.innerHTML ="Bulbasaur"
-    } else if (inputCharmander.checked) {
+    } else if (Mokepon.nombre) {
         spanMascotaJugador.innerHTML ="Charmander"
     } else {
         alert("Selecciona una mascota")
