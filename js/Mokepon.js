@@ -7,7 +7,7 @@ const botonReiniciar = document.getElementById("boton-reiniciar")
 const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
 
 const spanMascotaJugador = document.getElementById("mascota-jugador")
-
+const spanFotoJugador = document.getElementById("imagen-jugador")
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
 
 const spanVidasJugador = document.getElementById("vidas-jugador")
@@ -89,7 +89,7 @@ function iniciarJuego() {
         <label class="tarjeta-de-mokepon" for=${Mokepon.nombre} >
             <p>${Mokepon.nombre} </p>
             <img src=${Mokepon.foto} alt=${Mokepon.nombre} >
-        </label>
+        </label> 
         `
     contenedorTarjetas.innerHTML += opcionDeMokepones
 
@@ -110,14 +110,17 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarAtaque.style.display = "flex"    
     
     if (inputSquartle.checked) {
-        spanMascotaJugador.innerHTML = inputSquartle.id
+        /* spanMascotaJugador.innerHTML = inputSquartle.id */
         mascotaJugador = inputSquartle.id
+        spanFotoJugador.innerHTML = `<img src=${Squartle.foto} alt=${Squartle.nombre} id= "mascota-jugador-imagen">`                   
     } else if (inputBulbasaur.checked) {
-        spanMascotaJugador.innerHTML = inputBulbasaur.id
+        /* spanMascotaJugador.innerHTML = inputBulbasaur.id */
         mascotaJugador = inputBulbasaur.id
+        spanFotoJugador.innerHTML = `<img src=${Bulbasaur.foto} alt=${Bulbasaur.nombre} id= "mascota-jugador-imagen">`
     } else if (inputCharmander.checked) {
-        spanMascotaJugador.innerHTML = inputCharmander.id
+        /* spanMascotaJugador.innerHTML = inputCharmander.id */
         mascotaJugador = inputCharmander.id
+        spanFotoJugador.innerHTML = `<img src=${Charmander.foto} alt=${Charmander.nombre} id= "mascota-jugador-imagen">`
     } else {
         alert("Selecciona una mascota")
     }
@@ -139,7 +142,7 @@ function extraerAtaques (mascotaJugador) {
 function mostrarAtaques (ataques) {
     ataques.forEach((ataque) => {
         ataquesMokepon = ` 
-        <button id=${ataque.id} class="boton-de-ataque BAtaque">${ataque.nombre} </button>
+        <button id=${ataque.id} class="boton-de-ataque BAtaque">${ataque.nombre}</button>
         `
         contenedorAtaques.innerHTML +=ataquesMokepon
     })
@@ -151,26 +154,30 @@ function mostrarAtaques (ataques) {
 }
 
 function secuenciaAtaque () {
-    botones.forEach((boton) => {
-        boton.addEventListener("click", (e) => {          
-            if (e.target.textContent == "Fuego") {
+    
+    botones.forEach((boton) => {        
+        boton.addEventListener("click", (e) => { 
+            console.log(e.target.textContent)         
+            if (e.target.textContent === "Fuego") {
                 ataqueJugador.push("FUEGO")
                 console.log(ataqueJugador)                
                 boton.style.background = "#FFE5CA"
                 boton.disabled = true
-            } else if (e.target.textContent == "Agua") {
+            } else if (e.target.textContent === "Agua") {
                 ataqueJugador.push("AGUA")
                 console.log(ataqueJugador)
                 boton.style.background = "#FFE5CA"
                 boton.disabled = true
-            } else {
+            } else if (e.target.textContent === "Tierra"){ 
                 ataqueJugador.push("TIERRA")
                 console.log(ataqueJugador) 
                 boton.style.background = "#FFE5CA" 
                 boton.disabled = true               
-            }                     
+            } else {
+                console.log ("ERROR")
+            }
             ataqueAleatorioEnemigo ()
-        })
+        })        
     })    
 }
 
@@ -184,6 +191,7 @@ function seleccionarMascotaEnemigo () {
 }
 
 function ataqueAleatorioEnemigo() {
+    console.log("Hurra enemigo")
     let ataqueAleatorio = aleatorio(0,ataquesMokeponEnemigo.length -1)
 
     if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {

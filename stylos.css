@@ -150,8 +150,12 @@ input:checked + label {
     display: flex;
     flex-direction: column;
     padding-left: 15px;
-    align-items: center;
-   
+    align-items: center;   
+}
+
+#mascota-jugador-imagen {
+    width: 80px;
+    height: 80px;
 }
 
 @media (max-width: 360px) {
