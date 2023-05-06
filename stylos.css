@@ -130,7 +130,7 @@ input:checked + label {
     border-radius: 20px;
     border: 2px solid #E74646;
     width: 200px;
-    height: 200px;
+    height: 350px;
     margin-top: 20px;
     padding-right: 200px;
 }
@@ -149,7 +149,7 @@ input:checked + label {
 .ataques-jugador, .ataques-enemigo {
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
+    padding-left: 15px;
     align-items: center;
    
 }
