@@ -156,6 +156,13 @@ input:checked + label {
 #mascota-jugador-imagen {
     width: 80px;
     height: 80px;
+    margin: -29px 0px 0px -10px;
+}
+
+#mascota-enemigo-imagen {
+    width: 80px;
+    height: 80px;
+    margin: -29px 0px 0px -10px;
 }
 
 @media (max-width: 360px) {

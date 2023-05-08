@@ -9,12 +9,15 @@ const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
 const spanMascotaJugador = document.getElementById("mascota-jugador")
 const spanFotoJugador = document.getElementById("imagen-jugador")
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
+const spanFotoEnemigo = document.getElementById("imagen-enemigo")
 
 const spanVidasJugador = document.getElementById("vidas-jugador")
 const spanVidasEnemigo = document.getElementById("vidas-enemigo")
 
 const sectionMensajes = document.getElementById("resultado")
 const ataquesDelJugador = document.getElementById("ataques-del-jugador")
+const imagenAtaqueJugador =document.getElementById("ataque-imagen-jugador")
+
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
 const contenedorTarjetas = document.getElementById("contenedorTarjetas")
 const contenedorAtaques = document.getElementById("contenedorAtaques")
@@ -28,6 +31,7 @@ let inputSquartle
 let inputBulbasaur 
 let inputCharmander 
 let mascotaJugador
+let mascotaAleatoria
 let ataquesMokepon
 let ataquesMokeponEnemigo
 let botonFuego 
@@ -46,11 +50,11 @@ class Mokepon {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
-        this.ataques = []
+        this.ataques = []       
     }
 }
 
-let Squartle = new Mokepon ("Squartle", "./Assets/Hipodogue.png", 5)
+let Squartle = new Mokepon ("Squartle", "./Assets/Hipodogue.png", 5,)
 let Bulbasaur = new Mokepon ("Bulbasaur", "./Assets/Capipepo.png", 5)
 let Charmander = new Mokepon ("Charmander", "./Assets/Ratigueya.png", 5)
 
@@ -109,16 +113,13 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = "none"    
     sectionSeleccionarAtaque.style.display = "flex"    
     
-    if (inputSquartle.checked) {
-        /* spanMascotaJugador.innerHTML = inputSquartle.id */
+    if (inputSquartle.checked) {        
         mascotaJugador = inputSquartle.id
         spanFotoJugador.innerHTML = `<img src=${Squartle.foto} alt=${Squartle.nombre} id= "mascota-jugador-imagen">`                   
-    } else if (inputBulbasaur.checked) {
-        /* spanMascotaJugador.innerHTML = inputBulbasaur.id */
+    } else if (inputBulbasaur.checked) {        
         mascotaJugador = inputBulbasaur.id
         spanFotoJugador.innerHTML = `<img src=${Bulbasaur.foto} alt=${Bulbasaur.nombre} id= "mascota-jugador-imagen">`
-    } else if (inputCharmander.checked) {
-        /* spanMascotaJugador.innerHTML = inputCharmander.id */
+    } else if (inputCharmander.checked) {        
         mascotaJugador = inputCharmander.id
         spanFotoJugador.innerHTML = `<img src=${Charmander.foto} alt=${Charmander.nombre} id= "mascota-jugador-imagen">`
     } else {
@@ -142,7 +143,7 @@ function extraerAtaques (mascotaJugador) {
 function mostrarAtaques (ataques) {
     ataques.forEach((ataque) => {
         ataquesMokepon = ` 
-        <button id=${ataque.id} class="boton-de-ataque BAtaque">${ataque.nombre}</button>
+        <button id=${ataque.id} class="boton-de-ataque BAtaque">${ataque.nombre}</button>        
         `
         contenedorAtaques.innerHTML +=ataquesMokepon
     })
@@ -159,10 +160,10 @@ function secuenciaAtaque () {
         boton.addEventListener("click", (e) => { 
             console.log(e.target.textContent)         
             if (e.target.textContent === "Fuego") {
-                ataqueJugador.push("FUEGO")
-                console.log(ataqueJugador)                
+                ataqueJugador.push("FUEGO")                                
                 boton.style.background = "#FFE5CA"
                 boton.disabled = true
+                imagenAtaqueJugador.innerHTML = `<img src="/Assets/Fuego.png" alt="Fuego" id= "ataques-del-enemigo">`
             } else if (e.target.textContent === "Agua") {
                 ataqueJugador.push("AGUA")
                 console.log(ataqueJugador)
@@ -183,15 +184,14 @@ function secuenciaAtaque () {
 
 
 function seleccionarMascotaEnemigo () {
-    let mascotaAleatoria = aleatorio (0, mokepones.length -1)    
-
-    spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre
-    ataquesMokeponEnemigo = mokepones[mascotaAleatoria].ataques
+    mascotaAleatoria = aleatorio (0, mokepones.length -1)    
+      
+    ataquesMokeponEnemigo = mokepones[mascotaAleatoria].ataques   
+    spanFotoEnemigo.innerHTML = `<img src=${mokepones[mascotaAleatoria].foto} alt=${mokepones[mascotaAleatoria].nombre} id= "mascota-enemigo-imagen">`
     secuenciaAtaque ()
 }
 
-function ataqueAleatorioEnemigo() {
-    console.log("Hurra enemigo")
+function ataqueAleatorioEnemigo() {   
     let ataqueAleatorio = aleatorio(0,ataquesMokeponEnemigo.length -1)
 
     if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
