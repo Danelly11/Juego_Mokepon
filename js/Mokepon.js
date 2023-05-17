@@ -16,11 +16,12 @@ const spanVidasEnemigo = document.getElementById("vidas-enemigo")
 
 const sectionMensajes = document.getElementById("resultado")
 const ataquesDelJugador = document.getElementById("ataques-del-jugador")
-const imagenAtaqueJugador =document.getElementById("ataque-imagen-jugador")
+const imagenAtaqueJugador = document.getElementById("ataque-imagen-jugador")
 
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
 const contenedorTarjetas = document.getElementById("contenedorTarjetas")
 const contenedorAtaques = document.getElementById("contenedorAtaques")
+const imagenAtaqueEnemigo = document.getElementById("ataque-imagen-enemigo")
 
 
 let mokepones = []
@@ -50,9 +51,20 @@ class Mokepon {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
-        this.ataques = []       
+        this.ataques = []               
     }
 }
+
+class imagen {
+    constructor (nombre1, foto1) {
+        this.nombre1 = nombre1
+        this.foto1 = foto1
+    }
+}
+
+let imagenAtaqueFuego = new imagen("Fuego", "./Assets/Fuego.png")
+let imagenAtaqueAgua = new imagen("Agua", "./Assets/Agua.png")
+let imagenAtaqueTierra= new imagen ("Tierra", "./Assets/Tierra.png") 
 
 let Squartle = new Mokepon ("Squartle", "./Assets/Hipodogue.png", 5,)
 let Bulbasaur = new Mokepon ("Bulbasaur", "./Assets/Capipepo.png", 5)
@@ -93,7 +105,7 @@ function iniciarJuego() {
         <label class="tarjeta-de-mokepon" for=${Mokepon.nombre} >
             <p>${Mokepon.nombre} </p>
             <img src=${Mokepon.foto} alt=${Mokepon.nombre} >
-        </label> 
+        </label>              
         `
     contenedorTarjetas.innerHTML += opcionDeMokepones
 
@@ -124,8 +136,7 @@ function seleccionarMascotaJugador() {
         spanFotoJugador.innerHTML = `<img src=${Charmander.foto} alt=${Charmander.nombre} id= "mascota-jugador-imagen">`
     } else {
         alert("Selecciona una mascota")
-    }
-    
+    }    
     extraerAtaques (mascotaJugador)
     seleccionarMascotaEnemigo ()
 }
@@ -163,20 +174,20 @@ function secuenciaAtaque () {
                 ataqueJugador.push("FUEGO")                                
                 boton.style.background = "#FFE5CA"
                 boton.disabled = true
-                imagenAtaqueJugador.innerHTML = `<img src="/Assets/Fuego.png" alt="Fuego" id= "ataques-del-enemigo">`
+                imagenAtaqueJugador.innerHTML = `<img src=${imagenAtaqueFuego.foto1} alt=${imagenAtaqueFuego.nombre1} id= "ataque-imagen-jugador">`  
             } else if (e.target.textContent === "Agua") {
                 ataqueJugador.push("AGUA")
                 console.log(ataqueJugador)
                 boton.style.background = "#FFE5CA"
                 boton.disabled = true
-            } else if (e.target.textContent === "Tierra"){ 
+                imagenAtaqueJugador.innerHTML = `<img src=${imagenAtaqueAgua.foto1} alt=${imagenAtaqueAgua.nombre1} id= "ataque-imagen-jugador">`  
+            } else { 
                 ataqueJugador.push("TIERRA")
                 console.log(ataqueJugador) 
                 boton.style.background = "#FFE5CA" 
-                boton.disabled = true               
-            } else {
-                console.log ("ERROR")
-            }
+                boton.disabled = true
+                imagenAtaqueJugador.innerHTML = `<img src=${imagenAtaqueTierra.foto1} alt=${imagenAtaqueTierra.nombre1} id= "ataque-imagen-jugador">`
+            } 
             ataqueAleatorioEnemigo ()
         })        
     })    
@@ -196,6 +207,7 @@ function ataqueAleatorioEnemigo() {
 
     if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
         ataqueEnemigo.push("FUEGO")
+        imagenAtaqueEnemigo.innerHTML = `<img src=${imagen[ataqueAleatorio].foto1} alt=${imagen[ataqueAleatorio].nombre1} id= "ataque-imagen-enemigo">`        
     } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4){
         ataqueEnemigo.push("AGUA")
     } else {
@@ -226,7 +238,7 @@ function combate () {
             indexAmbosOponentes(index, index)
             crearMensaje("GANASTE")
             victoriasJugador++
-            spanVidasJugador.innerHTML = victoriasJugador
+            spanVidasJugador.innerHTML = victoriasJugador            
         } else if (ataqueJugador[index] == "AGUA" && ataqueEnemigo[index] == "FUEGO") {
             indexAmbosOponentes(index, index)
             crearMensaje("GANASTE")
@@ -258,11 +270,11 @@ function revisarVidas (){
 }
 
 function crearMensaje (resultado) {
-    let nuevoAtaqueDelJugador = document.createElement("p")
+    let nuevoAtaqueDelJugador = document.createElement("p")    
     let nuevoAtaqueDelEnemigo = document.createElement("p")
 
     sectionMensajes.innerHTML = resultado
-    nuevoAtaqueDelJugador.innerHTML = indexAtaqueJugador
+    /*nuevoAtaqueDelJugador.innerHTML = indexAtaqueJugador*/
     nuevoAtaqueDelEnemigo.innerHTML = indexAtaqueEnemigo
     
     ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)

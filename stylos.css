@@ -139,7 +139,6 @@ input:checked + label {
     font-size: 25px;
     margin-bottom: 0;
     color: #E74646;
-    
 }
 
 #mascota-jugador,#mascota-enemigo,#ataques-del-jugador, #ataques-del-enemigo {
@@ -164,6 +163,13 @@ input:checked + label {
     height: 80px;
     margin: -29px 0px 0px -10px;
 }
+
+#ataque-imagen-jugador {
+    width: 50px;
+    height: 50px;
+    margin: -1px 0px 0px -1px;
+}
+
 
 @media (max-width: 360px) {
     .tarjetas, .tarjetas-ataques {
